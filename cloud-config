@@ -1,0 +1,23 @@
+#cloud-config # https://cloudinit.readthedocs.io/en/latest/reference/index.html
+package_update: true # package를 전부 다 업데이트 
+packages: # 어떤 packages를 설치할 것인지
+  - docker # docker 설치
+
+users: 
+  - default
+  - name: hello # user 이름설정
+    shell: /bin/bash # 어떤 shell인지
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"] # password를 이용하지 않고, sudo 사용
+    lock_passwd: false # password를 잠금하지 않음
+    passwd: $y$j9T$QgvhEpOUYMz7rOk0tBjXd0$24R5KEw5Nb1teenKmUrD7GLFIwBA6tddoXq4HQaqt04 # mkpassword 값 지정
+ssh_pwauth: yes # ssh 접근 시에 password 인증 할것인지 
+
+
+----
+
+## mkpassword 
+
+$ sudo dnf install -y mkpasswd
+$ mkpasswd
+Password: Skill53##
+$y$j9T$QgvhEpOUYMz7rOk0tBjXd0$24R5KEw5Nb1teenKmUrD7GLFIwBA6tddoXq4HQaqt04
